@@ -4,6 +4,7 @@ import { deleteNoteRequest, updateNoteRequest, editNote, moveWithinLane, } from 
 import { createNoteRequest } from '../Note/NoteActions';
 
 const mapDispatchToProps = {
+  addNote: createNoteRequest,
   onValueClick: editNote,
   onUpdate: updateNoteRequest,
   onDelete: deleteNoteRequest,

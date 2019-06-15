@@ -1,21 +1,22 @@
 import { connect } from 'react-redux';
 import Lane from './Lane';
-import { createLaneRequest, fetchLanes } from '../Lane/LaneActions';
-import { createNote } from '../Note/NoteActions'
 import { compose } from 'redux';
 import { DropTarget } from 'react-dnd';
 import ItemTypes from '../Kanban/itemTypes';
-import * as laneActions from './LaneActions';
+import { deleteLaneRequest, updateLaneRequest, editLane, moveBetweenLanes } from './LaneActions';
+import { createNoteRequest } from '../Note/NoteActions';
+
+const mapDispatchToProps = {
+  editLane,
+  deleteLane: deleteLaneRequest,
+  updateLane: updateLaneRequest,
+  addNote: createNoteRequest,
+  moveBetweenLanes
+};
 
 const mapStateToProps = (state, ownProps) => ({
   laneNotes: ownProps.lane.notes.map(noteId => state.notes[noteId])
 });
-
-const mapDispatchToProps = {
-  ...laneActions,
-  addNote: createNote,
-  createLane: createLaneRequest,
-};
 
 const noteTarget = {
   hover(targetProps, monitor) {

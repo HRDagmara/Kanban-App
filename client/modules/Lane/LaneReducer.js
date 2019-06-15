@@ -12,31 +12,6 @@ function moveNotes(array, sourceNoteId, targetNoteId) {
   return arrayCopy;
 }
 
-// class Note extends React.Component {
-//   render() {
-//    const {
-//      connectDragSource,
-//      connectDropTarget,
-//      isDragging,
-//      editing,
-//      children,
-//     } = this.props;
-
-//     const dragSource = editing ? a => a : connectDragSource;
-
-//    return dragSource(connectDropTarget(
-//      <li
-//        className={styles.Note}
-//        style={{
-//          opacity: isDragging ? 0 : 1,
-//        }}
-//      >
-//        {children}
-//      </li>
-//    ));
-
-//   }
-// }
 // Initial State
 
 const initialState = {};

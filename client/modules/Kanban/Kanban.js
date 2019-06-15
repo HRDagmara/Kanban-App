@@ -8,8 +8,6 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { compose } from 'redux';
 
-
-
 const Kanban = (props) => (
   <div>
     <button className={styles.AddLane} onClick={() => props.createLane({ name: 'New lane'})}>Add lane</button>

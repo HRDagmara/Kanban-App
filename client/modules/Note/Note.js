@@ -5,6 +5,26 @@ import { compose } from 'redux';
 import ItemTypes from '../Kanban/itemTypes';
 
 
+class Note extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+  render() {
+    const {connectDragSource, connectDropTarget, isDragging,
+      editing, children} = this.props;
+
+    const dragSource = editing ? a => a : connectDragSource;
+
+    return dragSource(
+      <li className={styles.Note}
+        style={{
+        opacity: isDragging ? 0 : 1
+      }} >{children}</li>
+    );
+  }
+}
+
 const noteSource = {
   beginDrag(props) {
     return {
@@ -21,31 +41,12 @@ const noteTarget = {
   hover(targetProps, monitor) {
     const sourceProps = monitor.getItem();
 
-    if (targetProps.id !== sourceProps.id) {
+    const lane = targetProps.laneId === sourceProps.laneId
+    if (targetProps.id !== sourceProps.id && lane) {
       targetProps.moveWithinLane(targetProps.laneId, targetProps.id, sourceProps.id);
     }
   }
 };
-
-class Note extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-  render() {
-    const {connectDragSource, isDragging,
-      editing, children} = this.props;
-
-    const dragSource = editing ? a => a : connectDragSource;
-
-    return dragSource(
-      <li className={styles.Note}
-        style={{
-        opacity: isDragging ? 0 : 1
-      }} >{children}</li>
-    );
-  }
-}
 
 export default compose(
   DragSource(ItemTypes.NOTE, noteSource, (connect, monitor) => ({

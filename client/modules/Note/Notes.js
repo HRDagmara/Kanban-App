@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Note from './Note';
 import Edit from '../../components/Edit'
 import styles from './Notes.css';

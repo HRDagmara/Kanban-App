@@ -1,10 +1,9 @@
 import React from 'react';
 import Note from './Note';
 import Edit from '../../components/Edit'
-import styles from './Notes.css';
 
-const Notes = ({ notes, laneId, editNote, updateNote, deleteNote, moveWithinLane}) => (
-    <ul className={styles.Notes}>{notes.map((note) =>
+const Notes = ({ notes, laneId, onValueClick, onUpdate, onDelete, moveWithinLane}) => (
+    <ul>{notes.map((note) =>
       <Note
         id={note.id}
         key={note.id}
@@ -14,13 +13,13 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote, moveWithinLane
         <Edit
           editing={note.editing}
           value={note.task}
-          onValueClick={() => editNote(note.id)}
-          onUpdate={task => updateNote({
+          onValueClick={() => onValueClick(note.id)}
+          onUpdate={task => onUpdate({
             ...note,
             task,
             editing: false,
           })}
-          onDelete={() => deleteNote(note.id, laneId)}
+          onDelete={() => onDelete(note.id, laneId)}
         />
       </Note>
     )}</ul>

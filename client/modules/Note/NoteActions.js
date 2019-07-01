@@ -51,9 +51,9 @@ export function deleteNote(noteId, laneId) {
 
 export function deleteNoteRequest(noteId, laneId) {
   return (dispatch) => {
-    return callApi('noteId', 'delete').then(() => {
+    return callApi('notes/${noteId}', 'delete').then(() => {
       dispatch(deleteNote(noteId, laneId));
-    });
+    }).catch((err) =>console.log(err));
   };
 }
 

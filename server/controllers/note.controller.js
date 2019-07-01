@@ -34,7 +34,7 @@ export function addNote(req, res) {
 }
 
 export function deleteNote(req, res) {
-  Note.findOne({ id: req.body.id }).exec((err, note) => {
+  Note.findOne({ id: req.body.noteId }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -47,9 +47,9 @@ export function deleteNote(req, res) {
         lane.notes.pull(note);
         lane.save();
         res.status(200).send(note);
-      })
+      });
     }
-  })
+  });
 }
 
 export function editNote(req, res) {

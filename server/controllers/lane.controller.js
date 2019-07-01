@@ -23,7 +23,7 @@ export function addLane(req, res) {
   });
 }
 
-export function getLanes(req, res) { 
+export function getLanes(req, res) {
   Lane.find().exec((err, lanes) => {
     if (err) {
       res.status(500).send(err);
@@ -33,16 +33,15 @@ export function getLanes(req, res) {
 }
 
 export function deleteLane(req, res) {
-  Lane.findOne({ id: req.params.laneId }).exec((err, lane, note) => {
+  Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    note.remove(() => {
-      lane.remove(() => {
-        res.status(200).end();
-      });
-    });   
+    lane.notes.map((note) => note.remove());
+    lane.remove(() => {
+      res.status(200).end();
+    });
   });
 }
 

@@ -15,12 +15,12 @@ class Note extends React.Component {
 
     const dragSource = editing ? a => a : connectDragSource;
 
-    return dragSource(
+    return dragSource(connectDropTarget(
       <li
         style={{
         opacity: isDragging ? 0 : 1
       }} >{children}</li>
-    );
+    ));
   }
 }
 
